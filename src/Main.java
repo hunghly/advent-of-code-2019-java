@@ -7,9 +7,19 @@ class Main {
 
         String[] secondWire = {"L1006", "D998", "R94", "D841", "R911", "D381", "R532", "U836", "L299", "U237", "R781", "D597", "L399", "D800", "L775", "D405", "L485", "U636", "R589", "D942", "L878", "D779", "L751", "U711", "L973", "U410", "L151", "U15", "L685", "U417", "L106", "D648", "L105", "D461", "R448", "D743", "L589", "D430", "R883", "U37", "R155", "U350", "L421", "U23", "R337", "U816", "R384", "D671", "R615", "D410", "L910", "U914", "L579", "U385", "R916", "U13", "R268", "D519", "R289", "U410", "L389", "D885", "L894", "U734", "L474", "U707", "L72", "U155", "L237", "U760", "L127", "U806", "L15", "U381", "L557", "D727", "L569", "U320", "L985", "D452", "L8", "D884", "R356", "U732", "L672", "D458", "L485", "U402", "L238", "D30", "R644", "U125", "R753", "U183", "L773", "U487", "R849", "U210", "L164", "D808", "L595", "D668", "L340", "U785", "R313", "D72", "L76", "D263", "R689", "U604", "R471", "U688", "R462", "D915", "R106", "D335", "R869", "U499", "R190", "D916", "R468", "D882", "R56", "D858", "L143", "D741", "L386", "U856", "R50", "U853", "R151", "D114", "L773", "U854", "L290", "D344", "L23", "U796", "L531", "D932", "R314", "U960", "R643", "D303", "L661", "D493", "L82", "D491", "L722", "U848", "L686", "U4", "L985", "D509", "L135", "D452", "R500", "U105", "L326", "D101", "R222", "D944", "L645", "D362", "L628", "U305", "L965", "U356", "L358", "D137", "R787", "U728", "R967", "U404", "R18", "D928", "L695", "D965", "R281", "D597", "L791", "U731", "R746", "U163", "L780", "U41", "L255", "U81", "L530", "D964", "R921", "D297", "R475", "U663", "L226", "U623", "L984", "U943", "L143", "U201", "R926", "U572", "R343", "U839", "R764", "U751", "R128", "U939", "R987", "D108", "R474", "U599", "R412", "D248", "R125", "U797", "L91", "D761", "L840", "U290", "L281", "U779", "R650", "D797", "R185", "D320", "L25", "U378", "L696", "U332", "R75", "D620", "L213", "D667", "R558", "U267", "L846", "U306", "R939", "D220", "R311", "U827", "R345", "U534", "R56", "D679", "R48", "D845", "R898", "U8", "R862", "D960", "R753", "U319", "L886", "D795", "R805", "D265", "R876", "U729", "R894", "D368", "R858", "U744", "R506", "D327", "L903", "U919", "L721", "U507", "L463", "U753", "R775", "D719", "R315", "U128", "R17", "D376", "R999", "D386", "L259", "U181", "L162", "U605", "L265", "D430", "R35", "D968", "R207", "U466", "R796", "D667", "R93", "U749", "L315", "D410", "R312", "U929", "L923", "U260", "R638"};
 
+/*      Used variables for Part I
         int[][] matrix = new int[22000][22000];
         final int originPosX = 11000;
-        final int originPosY = 11000;
+        final int originPosY = 11000;*/
+
+        int[][] matrix = new int[400][400];
+        final int originPosX = 200;
+        final int originPosY = 200;
+
+/*      Used variables for easy wire tests
+        int[][] matrix = new int[30][30];
+        final int originPosX = 15;
+        final int originPosY = 15;*/
         int posX = originPosX;
         int posY = originPosY;
         LinkedList<Integer> overlappedXPos = new LinkedList<Integer>();
@@ -22,23 +32,13 @@ class Main {
         /*String[] testFirstWire = {"R8","U5","L5","D3", "R8"};
 
         String[] testSecondWire = {"U7","R6","D4","L4", "L4"};*/
-        String[] testFirstWire = {"R98","U47","R26","D63","R33","U87","L62","D20","R33","U53","R51"};
-        String[] testSecondWire = {"U98","R91","D20","R16","D67","R40","U7","R15","U6","R7"};
+        String[] testFirstWire = {"R98", "U47", "R26", "D63", "R33", "U87", "L62", "D20", "R33", "U53", "R51"};
+        String[] testSecondWire = {"U98", "R91", "D20", "R16", "D67", "R40", "U7", "R15", "U6", "R7"};
+        String[] testEasyFirstWire = {"R8", "U5", "L5", "D3"};
+        String[] testEasySecondWire = {"U7", "R6", "D4", "L4"};
 
-//        System.out.println(testFirstWire.length);
-//        System.out.println(testSecondWire.length);
-/*        for (int i = 0; i < testFirstWire.length; i++) {
-            System.out.print(testFirstWire[i]);
-        }
-
-
-
-        for (String s : testSecondWire) {
-            System.out.print(s);
-        }*/
-
-        calculateNeededXY(firstWire);
-        calculateNeededXY(secondWire);
+//        calculateNeededXY(firstWire);
+//        calculateNeededXY(secondWire);
 
         setUpMatrix(matrix);
         //set origin
@@ -46,44 +46,13 @@ class Main {
 
 
         // traverse through matrix
-        traverseFirstWire(matrix, firstWire, 11000, 11000);
+        traverseFirstWire(matrix, testFirstWire, 200, 200);
         // Reset position X/Y to origin for secondWire
         posX = originPosX;
         posY = originPosY;
-        traverseSecondWire(matrix, secondWire, 11000, 11000, overlappedXPos, overlappedYPos);
+        traverseSecondWire(matrix, testSecondWire, 200, 200, overlappedXPos, overlappedYPos);
+        findShortestIntersectionPath(matrix, testFirstWire, 200, 200);
         calculateDifference(overlappedXPos, overlappedYPos, originPosX, originPosY);
-
-//        printMatrix(matrix);
-//        System.out.println(overlappedXPos);
-//        System.out.println(overlappedYPos);
-//        System.out.println(overlappedXPos.toArray().length);
-//        System.out.println(overlappedYPos.toArray().length);
-//        System.out.println(overlappedXPos.get(0) - originPosX);
-        //
-
-
-
-
-        /*differenceArrayX = new int[overlappedXPos.toArray().length];
-        differenceArrayY = new int[overlappedYPos.toArray().length];
-        for (int i = 0; i < overlappedXPos.toArray().length; i++) {
-            differenceArrayX[i] = overlappedXPos.get(i) - originPosX;
-            differenceArrayY[i] = overlappedYPos.get(i) - originPosY;
-//            System.out.println(differenceArrayX[i]);
-//            System.out.println(differenceArrayY[i]);
-            int difference = Math.abs(differenceArrayX[i]) + Math.abs(differenceArrayY[i]);
-            System.out.println("For [" + overlappedXPos.get(i) + "," + overlappedYPos.get(i) + "]. The difference is " + difference + ". When origin is [" + originPosX + "," + originPosY + "]");
-            if (difference < shortestPath) {
-                shortestPathArray[0] = overlappedXPos.get(i);
-                shortestPathArray[1] = overlappedYPos.get(i);
-                shortestPath = difference;
-            }
-//          differenceArray[i] = overlappedXPos.get(i) - originPosX;
-        }*/
-
-
-
-
 
 //        printMatrix(matrix);
 
@@ -93,6 +62,7 @@ class Main {
     public static void sayHello() {
         System.out.println("Hello");
     }
+
     public static void calculateDifference(LinkedList<Integer> overlappedXPos, LinkedList<Integer> overlappedYPos, int originPosX, int originPosY) {
         int[] differenceArrayX = new int[overlappedXPos.toArray().length];
         int[] differenceArrayY = new int[overlappedYPos.toArray().length];
@@ -102,8 +72,6 @@ class Main {
         for (int i = 0; i < overlappedXPos.toArray().length; i++) {
             differenceArrayX[i] = overlappedXPos.get(i) - originPosX;
             differenceArrayY[i] = overlappedYPos.get(i) - originPosY;
-//            System.out.println(differenceArrayX[i]);
-//            System.out.println(differenceArrayY[i]);
             int difference = Math.abs(differenceArrayX[i]) + Math.abs(differenceArrayY[i]);
             System.out.println("For [" + overlappedXPos.get(i) + "," + overlappedYPos.get(i) + "]. The difference is " + difference + ". When origin is [" + originPosX + "," + originPosY + "]");
             if (difference < shortestPath) {
@@ -111,9 +79,8 @@ class Main {
                 shortestPathArray[1] = overlappedYPos.get(i);
                 shortestPath = difference;
             }
-//          differenceArray[i] = overlappedXPos.get(i) - originPosX;
         }
-        System.out.println("My Answer is " + shortestPath);
+        System.out.println("My Answer for Manhattan Distance is " + shortestPath);
     }
 
     public static void calculateNeededXY(String[] testFirstWire) {
@@ -160,12 +127,69 @@ class Main {
                 }
             }
         }
-        System.out.println(totalX);
-        System.out.println(totalY);
         System.out.println("Max X value is " + maxX);
         System.out.println("Max Y value is " + maxY);
         System.out.println("Min X value is " + minX);
         System.out.println("Min Y value is " + minY);
+    }
+
+    public static void findShortestIntersectionPath(int[][] matrix, String[] testFirstWire, int posX, int posY) {
+        int totalSteps = 0;
+        double lowestSteps = Double.POSITIVE_INFINITY;
+
+        for (int i = 0; i < testFirstWire.length; i++) {
+            char direction = testFirstWire[i].charAt(0);
+            int magnitude = Integer.parseInt(testFirstWire[i].substring(1));
+            // Determine direction and move wire to position, assigning 1 to firstWire's path
+            if (direction == 'R') {
+                // Right will change the X direction
+                for (int r = 0; r < magnitude; r++) {
+                    totalSteps++;
+                    posX++;
+                    if ((matrix[posX][posY]) == 3) {
+                        if (lowestSteps > totalSteps) {
+                            lowestSteps = totalSteps;
+                        }
+                    }
+                }
+            } else if (direction == 'D') {
+                for (int d = 0; d < magnitude; d++) {
+                    totalSteps++;
+                    posY++;
+                    if ((matrix[posX][posY]) == 3) {
+                        if (lowestSteps > totalSteps) {
+                            lowestSteps = totalSteps;
+                        }
+//                        System.out.println("They cross at " + posX + "," + posY);
+                    }
+                }
+            } else if (direction == 'L') {
+                // Left will change the X direction
+                for (int l = 0; l < magnitude; l++) {
+                    totalSteps++;
+                    posX--;
+                    if ((matrix[posX][posY]) == 3) {
+                        if (lowestSteps > totalSteps) {
+                            lowestSteps = totalSteps;
+                        }
+//                        System.out.println("They cross at " + posX + "," + posY);
+                    }
+                }
+            } else if (direction == 'U') {
+                // Up will change the Y direction
+                for (int u = 0; u < magnitude; u++) {
+                    totalSteps++;
+                    posY--;
+                    if ((matrix[posX][posY]) == 3) {
+                        if (lowestSteps > totalSteps) {
+                            lowestSteps = totalSteps;
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("Total steps 1st Wire " + totalSteps);
+        System.out.println("Lowest steps 1st Wire " + lowestSteps);
     }
 
     public static void traverseFirstWire(int[][] matrix, String[] testFirstWire, int posX, int posY) {
@@ -197,12 +221,12 @@ class Main {
                     matrix[posX][posY] = 1;
                 }
             }
-//            System.out.println("X " + posX);
-//            System.out.println("Y " + posY);
         }
     }
 
     public static void traverseSecondWire(int[][] matrix, String[] testSecondWire, int posX, int posY, LinkedList<Integer> overlappedXPos, LinkedList<Integer> overlappedYPos) {
+        int totalSteps = 0;
+        double lowestSteps = Double.POSITIVE_INFINITY;
         for (int i = 0; i < testSecondWire.length; i++) {
             char direction = testSecondWire[i].charAt(0);
             int magnitude = Integer.parseInt(testSecondWire[i].substring(1));
@@ -210,24 +234,30 @@ class Main {
             if (direction == 'R') {
                 // Right will change the X direction
                 for (int r = 0; r < magnitude; r++) {
+                    totalSteps++;
                     posX++;
                     if ((matrix[posX][posY]) == 1) {
+                        if (lowestSteps > totalSteps) {
+                            lowestSteps = totalSteps;
+                        }
                         matrix[posX][posY] = 3;
                         overlappedXPos.add(posX);
                         overlappedYPos.add(posY);
-//                        System.out.println("They cross at " + posX + "," + posY);
                     } else {
                         matrix[posX][posY] = 2;
                     }
                 }
             } else if (direction == 'D') {
                 for (int d = 0; d < magnitude; d++) {
+                    totalSteps++;
                     posY++;
                     if ((matrix[posX][posY]) == 1) {
+                        if (lowestSteps > totalSteps) {
+                            lowestSteps = totalSteps;
+                        }
                         matrix[posX][posY] = 3;
                         overlappedXPos.add(posX);
                         overlappedYPos.add(posY);
-//                        System.out.println("They cross at " + posX + "," + posY);
                     } else {
                         matrix[posX][posY] = 2;
                     }
@@ -235,12 +265,15 @@ class Main {
             } else if (direction == 'L') {
                 // Left will change the X direction
                 for (int l = 0; l < magnitude; l++) {
+                    totalSteps++;
                     posX--;
                     if ((matrix[posX][posY]) == 1) {
+                        if (lowestSteps > totalSteps) {
+                            lowestSteps = totalSteps;
+                        }
                         matrix[posX][posY] = 3;
                         overlappedXPos.add(posX);
                         overlappedYPos.add(posY);
-//                        System.out.println("They cross at " + posX + "," + posY);
                     } else {
                         matrix[posX][posY] = 2;
                     }
@@ -248,20 +281,23 @@ class Main {
             } else if (direction == 'U') {
                 // Up will change the Y direction
                 for (int u = 0; u < magnitude; u++) {
+                    totalSteps++;
                     posY--;
                     if ((matrix[posX][posY]) == 1) {
+                        if (lowestSteps > totalSteps) {
+                            lowestSteps = totalSteps;
+                        }
                         matrix[posX][posY] = 3;
                         overlappedXPos.add(posX);
                         overlappedYPos.add(posY);
-//                        System.out.println("They cross at " + posX + "," + posY);
                     } else {
                         matrix[posX][posY] = 2;
                     }
                 }
             }
-//            System.out.println("X " + posX);
-//            System.out.println("Y " + posY);
         }
+        System.out.println("Total steps 2nd Wire " + totalSteps);
+        System.out.println("Lowest steps 2nd Wire " + lowestSteps);
     }
 
     public static void setUpMatrix(int[][] matrix) {
